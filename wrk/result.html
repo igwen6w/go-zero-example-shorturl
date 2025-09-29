@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Wrk 压测报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .summary { margin-bottom: 30px; }
+        .card { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        canvas { max-width: 800px; margin: 20px auto; display: block; }
+    </style>
+</head>
+<body>
+<h1>Wrk 压测报告</h1>
+<div class="summary">
+    <div class="card"><b>总请求数:</b> 5,648,528</div>
+    <div class="card"><b>成功请求:</b> 998,185 (~17.6%)</div>
+    <div class="card"><b>失败请求:</b> 4,650,343 (~82.4%)</div>
+    <div class="card"><b>平均延迟:</b> 57.33 ms (最大 710.93 ms)</div>
+    <div class="card"><b>吞吐量:</b> 18,826 req/s</div>
+    <div class="card"><b>总传输:</b> 1.00 GB</div>
+</div>
+
+<canvas id="latencyChart"></canvas>
+<canvas id="statusChart"></canvas>
+
+<script>
+    // 延迟分布
+    new Chart(document.getElementById('latencyChart'), {
+        type: 'bar',
+        data: {
+            labels: ['平均延迟', '最大延迟'],
+            datasets: [{
+                label: '延迟 (ms)',
+                data: [57.33, 710.93],
+                backgroundColor: ['#36a2eb', '#ff6384']
+            }]
+        }
+    });
+
+    // 成功/失败比例
+    new Chart(document.getElementById('statusChart'), {
+        type: 'pie',
+        data: {
+            labels: ['成功请求', '失败请求'],
+            datasets: [{
+                data: [998185, 4650343],
+                backgroundColor: ['#4caf50', '#f44336']
+            }]
+        }
+    });
+</script>
+</body>
+</html>
