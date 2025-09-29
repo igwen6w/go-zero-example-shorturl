@@ -1,0 +1,17 @@
+-- Postgres
+
+-- Table: public.shorturl
+
+-- DROP TABLE IF EXISTS public.shorturl;
+
+CREATE TABLE IF NOT EXISTS public.shorturl
+(
+    shorten character varying(6) COLLATE pg_catalog."default" NOT NULL,
+    url character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT shorturl_pkey PRIMARY KEY (shorten)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.shorturl
+    OWNER to "go-zero";
