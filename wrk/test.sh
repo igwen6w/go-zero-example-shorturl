@@ -1,0 +1,1 @@
+wrk -t12 -c1000 -d5m -s shorten.lua http://localhost:8888
